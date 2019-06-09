@@ -1,0 +1,23 @@
+<%= form_for [@item, @item_tax] do |f| %>
+  <% if @item_tax.errors.any? %>
+    <h2><%= pluralize(@item_tax.errors.count, "error") %> prohibited this item from being saved:</h2>
+		<ul>
+      <% @item_tax.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :tax_type %>
+  <%= f.radio_button :tax_type, 'percentage' %> 
+  <%= f.label :tax_type, 'Percentage', :value => 'percentage' %>
+  <%= f.radio_button :tax_type, 'value' %> 
+  <%= f.label :tax_type, 'Value', :value => 'value' %>
+  <br>
+  <%= f.label :tax %>
+  <%= f.text_field :tax %>
+  <br><%= f.submit "Submit" %>
+<% end %>
+<br><%= link_to 'Back', item_item_taxes_path(@item) %>

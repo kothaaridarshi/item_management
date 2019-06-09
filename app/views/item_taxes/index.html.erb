@@ -1,0 +1,23 @@
+<% if @item_taxes.present? %>
+	<h4> Item: <%= @item.name %> </h2>
+	<table>
+		<tr>
+			<th> Name </th>
+			<th> Tax Type </th>
+			<th> Tax </th>
+			<th colspan="3"> Actions </th>
+		</tr>
+		<% @item_taxes.each do |item_tax| %>
+			<tr>
+				<td> <%= item_tax.name %> </td>
+				<td> <%= item_tax.tax_type %> </td>
+				<td> <%= item_tax.tax %> </td>
+				<td> <%= link_to 'Show', item_item_tax_path(@item, item_tax) %> </td>
+				<td> <%= link_to 'Edit', edit_item_item_tax_path(@item, item_tax) %> </td>
+				<td> <%= link_to 'Delete', [@item, item_tax], method: :delete, data: { confirm: 'Are you sure you want to delete?' } %> </td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+<%= link_to 'Add new item tax', new_item_item_tax_path(@item) %>
+<%= link_to 'Go to Items', item_category_items_path(@item.item_category) %>
